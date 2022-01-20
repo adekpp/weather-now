@@ -22,7 +22,7 @@ function App() {
 
   function getData(query){
  
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${api_key}`,
+  fetch(`https://rocky-cove-65547.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${api_key}`,
   {headers : { 
     'Content-Type': 'application/json',
     'Accept': 'application/json'
