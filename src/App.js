@@ -1,14 +1,17 @@
 import React from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fas, } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faBinoculars, faWater, faWind } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import Input from "./components/Input";
 import Weather from "./components/Weather";
 import Error from "./components/Error";
 import Header from "./components/Header";
 import { useState } from 'react';
+import Footer from "./components/Footer";
 
-library.add(fas, faBinoculars, faWater, faWind);
+library.add(fas, fab, faGithub, faLinkedin, faBinoculars, faWater, faWind);
 
 
 function App() {
@@ -53,7 +56,7 @@ return (
 
   {err === true && <Error error={err} />}
   { data != 0 && <Weather data={data} transition={transition} /> }
-
+  <Footer />
   
   </div>)
 
