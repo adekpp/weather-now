@@ -5,7 +5,7 @@ module.exports = {
   theme: {      
     extend: {
       fontFamily: {
-        sans: ['ui-sans-serif', 'system-ui', 'Carter One'],
+        sans: ['ui-sans-serif', 'system-ui', 'Permanent Marker'],
       }
     },
   },
