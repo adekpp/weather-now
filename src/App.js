@@ -49,15 +49,14 @@ function App() {
   setData([])
 }
 return (
-  <div>
-  
+  <div className="app">
+ <Footer/> 
   <Header />
   <Input query={getData}/>
 
   {err === true && <Error error={err} />}
   { data != 0 && <Weather data={data} transition={transition} /> }
-  <Footer />
-  
+ 
   </div>)
 
 }
