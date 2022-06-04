@@ -1,13 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData, setError} from "../redux/dataSlice";
 import { motion } from "framer-motion";
 
 const Input = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
-  const {error} = useSelector((state) => state.data);
 
   const handleSubmit = (event) => {
     event.preventDefault();
