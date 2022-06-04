@@ -1,27 +1,50 @@
-import React from 'react'
-import { useState } from 'react';
-const Input = (props) => {
+import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData, setError} from "../redux/dataSlice";
+import { motion } from "framer-motion";
 
+const Input = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const {error} = useSelector((state) => state.data);
 
-const [query, setQuery] = useState('');
-const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setQuery("")
+    if(!query){
+      return dispatch(setError(true));
+    }
+    
+    setQuery("");
+    dispatch(fetchData(query));
+  };
 
-    props.query(query);
-}
+  return (
+    <motion.div
+    animate={{ x: 0, opacity: 1 }}
+    initial={{ x: -1000, opacity: 0 }}
+    transition={{ type: "spring", stiffness: 100 }}
+    className="shadow-lg mx-auto bg-white w-5/6 md:w-5/12 mt-5">
+      <form
+        className="flex flex-row justify-center gap-5 p-8"
+        onSubmit={handleSubmit}
+      >
+        <input
+          type="text"
+          value={query}
+          placeholder="City name"
+          className="border-0 border-b-2 focus:outline-none focus:border-sky-400 focus:ring-0 text-gray-900  w-3/4 md:max-w-sm"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="rounded-full bg-sky-400 py-2 px-4 font-semibold transition ease-in-out delay-150 hover:bg-sky-500  text-white active:scale-110"
+        >
+          Search
+        </button>
+      </form>
+    </motion.div>
+  );
+};
 
-
-    return (
-        <div className='shadow-lg mx-auto bg-white w-5/6 md:w-5/12 mt-5'>
-            <form className="flex flex-row justify-center gap-5 p-8" onSubmit={handleSubmit}>
-            <input type="text" value={query} placeholder="City name" className="border-0 border-b-2 focus:outline-none focus:border-sky-400 focus:ring-0 text-gray-900  w-3/4 md:max-w-sm" onInput={e => setQuery(e.target.value)}/>
-            <button type="submit" className="rounded-full bg-sky-400 py-2 px-4 font-semibold transition ease-in-out delay-150 hover:bg-sky-500  text-white">Search</button>
-
-
-            </form>
-        </div>
-    )
-}
-
-export default Input
+export default Input;

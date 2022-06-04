@@ -1,20 +1,21 @@
-import React from 'react'
-import { CSSTransition } from 'react-transition-group';
-import './Error.css';
-
-const Error = ({error}) => {
-    return (
-        <CSSTransition in={error} timeout={6000} classNames="my-node">
-        <div>
-        <div className='flex flex-row w-full mt-5  justify-center place-items-center'>
-
+import React from "react";
+import "./Error.css";
+import { motion } from "framer-motion";
+const Error = () => {
+  return (
+    <motion.div
+      animate={{ scale: 1, opacity: 1 }}
+      initial={{ scale: 0.5, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 100 }}
+      exit={{ scale: 0.5, opacity: 0 }}
+    >
+      <div className="flex flex-row w-full mt-5  justify-center place-items-center">
         <div className=" text-center font-semibold text-red-500 py-6 px-6 bg-white shadow-lg  w-5/12">
-            <h1>City not found</h1>
-        </div>    
+          <h1>City not found</h1>
         </div>
-        </div>
-        </CSSTransition>
-    )
-}
+      </div>
+    </motion.div>
+  );
+};
 
-export default Error
+export default Error;
